@@ -1,13 +1,23 @@
-from django.shortcuts import render
+from django.views import generic
 from .models import Post, Category
 
-# Create your views here.
+class PostListView(generic.ListView):
+    model = Post
+    template_name = 'post_list.html'
+    context_object_name = 'posts'
+    
+    def get_queryset(self):
+        return Post.objects.filter(draft=False).order_by('-created_at')
 
-def post_list(request):
-    posts = Post.objects.filter(draft=False).order_by('-created_at')
-    return render(request, 'forum/post_list.html', {'posts': posts})
-
-def category_detail(request, category_id):
-    category = Category.objects.get(id=category_id)
-    posts = Post.objects.filter(category=category, draft=False)
-    return render(request, 'forum/category_detail.html', {'category': category, 'posts': posts})
+class CategoryDetailView(generic.DetailView):
+    model = Category
+    template_name = 'category_detail.html'
+    context_object_name = 'category'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(
+            category=self.object, 
+            draft=False
+        )
+        return context
