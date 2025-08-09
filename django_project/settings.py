@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+<<<<<<< HEAD
     "user",
     "forum",
+=======
+    'forum',
+>>>>>>> 3f4b7bd0cbafc8bb7999aa9dfdbadf809cab1ba6
 ]
 
 AUTH_USER_MODEL = 'user.User'
@@ -61,7 +65,7 @@ ROOT_URLCONF = "django_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
