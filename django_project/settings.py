@@ -37,15 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-<<<<<<< HEAD
-    "user",
     "forum",
-=======
-    'forum',
->>>>>>> 3f4b7bd0cbafc8bb7999aa9dfdbadf809cab1ba6
 ]
 
-AUTH_USER_MODEL = 'user.User'
+# AUTH_USER_MODEL = 'user.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
