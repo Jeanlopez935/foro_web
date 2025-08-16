@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Perfil de {{ user.username }}</h2>
+<p>Email: {{ user.email }}</p>
+<h3>Tus publicaciones</h3>
+<ul>
+    {% for post in user_posts %}
+    <li>
+        <h4>{{ post.title }}</h4>
+        <p>{{ post.created_at|date:'d/m/Y' }}</p>
+        <a href="{% url 'post_update' post.pk %}">Editar</a>
+        <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+    </li>
+    {% empty %}
+    <li>No has creado publicaciones aún.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

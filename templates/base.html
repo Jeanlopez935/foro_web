@@ -13,7 +13,35 @@
         </nav>
     </header>
     <main>
-        {% block content %}{% endblock %}
+<head>
+    <title>Foro Web</title>
+    <!-- ...otros elementos... -->
+    <style>
+        .navbar {
+            background: #eee;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .navbar a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+    {% for category in categories %}
+        <a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a>
+    {% endfor %}
+    <a href="{% url 'profile' %}">Mi perfil</a>
+    <a href="{% url 'about' %}">Sobre nosotros</a>
+</div>
+    {% block content %}
+    {% endblock %}
+</body>
+
     </main>
 </body>
 </html>

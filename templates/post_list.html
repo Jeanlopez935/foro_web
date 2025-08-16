@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<h2>¡Bienvenido al Foro Comunitario!</h2>
+<p>
+    Este foro es un espacio para compartir conocimientos, resolver dudas y debatir sobre temas relacionados con Django y desarrollo web.
+    Explora las categorías, participa en las discusiones y aprende junto a la comunidad.
+</p>
 <h2>Publicaciones recientes</h2>
 <ul>
     {% for post in posts %}
@@ -7,8 +12,9 @@
         <h3>{{ post.title }}</h3>
         <p><strong>Author:</strong> {{ post.author }} | <strong>Fecha</strong> {{ post.created_at|date:'d/m/Y'}}</p>
         {% if user.is_authenticated and post.author == user %}
-            <a href="{% url 'post_edit' post.pk %}">Editar</a>
+            <a href="{% url 'post_update' post.pk %}">Editar</a>
             <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+            <a href="{% url 'post_detail' post.pk %}">Ver detalles</a>
         {% endif %}
     </li>
     {% empty %}
