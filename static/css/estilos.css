@@ -1,0 +1,75 @@
+.card .form-control {
+        background-color: #252525;
+        border: 1px solid #444;
+        color: #e0e0e0;
+        border-radius: 0 8px 8px 0;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .card .form-control:focus {
+        background-color: #2d2d2d;
+        border-color: #fdd835;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(253, 216, 53, 0.15);
+        outline: none;
+    }
+
+    .input-group {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .form-label {
+        font-weight: 600 !important;
+    }
+
+    small, .small {
+        color: #aaa !important;
+    }
+
+    ul {
+        padding-left: 1.2rem;
+        margin: 0.5rem 0 0 0;
+        font-size: 0.8rem;
+    }
+
+    ul li {
+        margin-bottom: 0.2rem;
+    }
+
+    /* Colorea todos los textos y campos del formulario de registro */
+    .card .form-label,
+    .card .form-control,
+    .card .input-group-text,
+    .card .form-label *,
+    .card .form-control *,
+    .card .input-group-text *,
+    .card .text-muted,
+    .card .text-danger,
+    .card .small,
+    .card small {
+        color: #e0e0e0 !important;
+    }
+    .card .text-muted,
+    .card small,
+    .card .small {
+        color: #e0e0e0 !important;
+        opacity: 0.8;
+    }
+    .card .text-danger {
+        color: #ff5252 !important;
+    .card .form-label,
+.card .form-control,
+.card .input-group-text,
+.card .text-muted,
+.card .small,
+.card small,
+.card label,
+.card input,
+.card select,
+.card textarea {
+    color: #fff !important;
+}
+    }
