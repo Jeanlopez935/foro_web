@@ -4,10 +4,14 @@
 <ul>
     {% for post in posts %}
     <li>
-        <h3>{{ post.title }}</h3>
+        <h3>
+            <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+        </h3>
         <p><strong>Autor:</strong> {{ post.author }} | <strong>Fecha:</strong> {{ post.created_at|date:'d/m/Y' }}</p>
-        <a href="{% url 'post_update' post.pk %}">Editar</a>
-        <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+        {% if user.is_authenticated and post.author == user %}
+            <a href="{% url 'post_update' post.pk %}">Editar</a>
+            <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+        {% endif %}
     </li>
     {% empty %}
     <li>No hay publicaciones en esta categoría.</li>

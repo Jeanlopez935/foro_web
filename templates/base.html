@@ -37,6 +37,12 @@
     {% endfor %}
     <a href="{% url 'profile' %}">Mi perfil</a>
     <a href="{% url 'about' %}">Sobre nosotros</a>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" style="background:none;border:none;color:#333;cursor:pointer;">Cerrar sesión</button>
+</form>
+    {% endif %}
 </div>
     {% block content %}
     {% endblock %}

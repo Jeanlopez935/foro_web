@@ -14,8 +14,8 @@
         {% if user.is_authenticated and post.author == user %}
             <a href="{% url 'post_update' post.pk %}">Editar</a>
             <a href="{% url 'post_delete' post.pk %}">Borrar</a>
-            <a href="{% url 'post_detail' post.pk %}">Ver detalles</a>
         {% endif %}
+        <a href="{% url 'post_detail' post.pk %}">Ver detalles</a>
     </li>
     {% empty %}
     <li>No hay publicaciones</li>
