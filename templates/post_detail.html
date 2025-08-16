@@ -2,6 +2,10 @@
 {% block content %}
 <h2>{{ post.title }}</h2>
 <p>{{ post.content }}</p>
+<p>
+    <strong>Creado:</strong> {{ post.created_at|date:'d/m/Y H:i' }}<br>
+    <strong>Última edición:</strong> {{ post.updated_at|date:'d/m/Y H:i' }}
+</p>
 <hr>
 <h3>Comentarios</h3>
 <ul>
