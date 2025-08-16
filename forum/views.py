@@ -22,7 +22,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
     model = Post
-    fields = ['title', 'content', 'category', 'resources', 'draft']
+    fields = ['title', 'content', 'category', 'resources', 'draft', 'image']
     template_name = 'post_form.html'
     success_url = reverse_lazy('post_list')
 
@@ -32,7 +32,7 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Post
-    fields = ['title', 'content', 'category', 'resources', 'draft']
+    fields = ['title', 'content', 'category', 'resources', 'draft', 'image']
     template_name = 'post_form.html'
     success_url = reverse_lazy('post_list')
 

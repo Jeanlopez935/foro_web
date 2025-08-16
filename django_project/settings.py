@@ -135,6 +135,6 @@ import os
 
 # Directorio donde se guardarán las imágenes subidas
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/profile/'
