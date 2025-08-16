@@ -50,7 +50,7 @@
                         <div class="mb-3">
                             <label for="{{ form.password1.id_for_label }}" class="form-label text-light small fw-bold">Contraseña</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-dark text-warning border-end-0" style="border-radius: 8px 0 0 8px; border: 1px solid #444;">
+                                <span class="input-group-text bg-dark text-warning border-end-0" style="border-radius: 8px 0 0 8px; border: 1px solid #303030;">
                                     <i class="bi bi-lock"></i>
                                 </span>
                                 {{ form.password1 }}
@@ -152,6 +152,44 @@
 
     ul li {
         margin-bottom: 0.2rem;
+    }
+</style>
+<style>
+    /* Aplica el color a todos los textos del formulario */
+    .register-form, .register-form label, .register-form input, .register-form select, .register-form textarea {
+        color: #ffffff !important; /* Cambia #222 por el color que prefieras */
+    }
+</style>
+<h2>Registro de usuario</h2>
+<form method="post" class="register-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+</form>
+<style>
+    /* Colorea todos los textos y campos del formulario de registro */
+    .card .form-label,
+    .card .form-control,
+    .card .input-group-text,
+    .card .form-label *,
+    .card .form-control *,
+    .card .input-group-text *,
+    .card .text-muted,
+    .card .text-danger,
+    .card .small,
+    .card small {
+        color: #e0e0e0 !important;
+    }
+    /* Colorea los textos de ayuda y errores */
+    .card .text-muted,
+    .card small,
+    .card .small {
+        color: #e0e0e0 !important;
+        opacity: 0.8;
+    }
+    /* Colorea los errores */
+    .card .text-danger {
+        color: #ff5252 !important;
     }
 </style>
 {% endblock %}
