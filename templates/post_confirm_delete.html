@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>¿Estás seguro de que quieres borrar este post?</h2>
+    <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, borrar</button>
+    <a href="{% url 'post_list' %}">Cancelar</a>
+    </form>
+{% endblock %}

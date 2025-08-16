@@ -2,13 +2,18 @@
 {% block content %}
 <h2>Publicaciones recientes</h2>
 <ul>
-    {%for post in posts %}
+    {% for post in posts %}
     <li>
-        <h3> {{ post.tittle }}</h3>
-        <p><strong>Author:</strong> {{ post.author }} | <strong>Fecha</strong> {{ post.created_at|date:'d/m/Y'}} </p>
+        <h3>{{ post.title }}</h3>
+        <p><strong>Author:</strong> {{ post.author }} | <strong>Fecha</strong> {{ post.created_at|date:'d/m/Y'}}</p>
+        {% if user.is_authenticated and post.author == user %}
+            <a href="{% url 'post_edit' post.pk %}">Editar</a>
+            <a href="{% url 'post_delete' post.pk %}">Borrar</a>
+        {% endif %}
     </li>
     {% empty %}
     <li>No hay publicaciones</li>
     {% endfor %}
 </ul>
+<a href="{% url 'post_create' %}">Crear nuevo post</a>
 {% endblock %}
