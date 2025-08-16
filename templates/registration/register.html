@@ -1,29 +1,157 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h2>Crear cuenta</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            <label for="id_username">Nombre de usuario:</label>
-            {{ form.username }}
-            <small>Obligatorio. 15 caracteres o menos. Letras, dígitos y @/./+/-/_ únicamente.</small>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-10">
+            <div class="card border-0 shadow-sm" style="
+                background-color: #1a1a1a;
+                border-radius: 14px;
+                overflow: hidden;
+                backdrop-filter: blur(10px);
+                border: 1px solid #333;
+            ">
+                <!-- Encabezado con fondo dorado suave -->
+                <div class="text-center py-4" style="background: rgba(253, 216, 53, 0.1); border-bottom: 1px solid #383838;">
+                    <i class="bi bi-person-plus-fill text-warning" style="font-size: 3rem;"></i>
+                    <h4 class="text-white mb-1 fw-bold">Crea tu cuenta</h4>
+                    <p class="text-muted small mb-0">Únete al crecimiento como atleta</p>
+                </div>
+
+                <!-- Cuerpo del formulario -->
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger alert-sm p-2 text-center" style="font-size: 0.85rem;">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label text-light small fw-bold">Nombre de usuario</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark text-warning border-end-0" style="border-radius: 8px 0 0 8px; border: 1px solid #444;">
+                                    <i class="bi bi-at"></i>
+                                </span>
+                                {{ form.username }}
+                            </div>
+                            <small class="text-muted mt-1 d-block">
+                                Obligatorio. 15 caracteres o menos. Letras, dígitos y @/./+/-/_ únicamente.
+                            </small>
+                            {% if form.username.errors %}
+                                <div class="text-danger small mt-1">{{ form.username.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label text-light small fw-bold">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark text-warning border-end-0" style="border-radius: 8px 0 0 8px; border: 1px solid #444;">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                {{ form.password1 }}
+                            </div>
+                            <ul class="text-muted small mt-2 mb-0 ps-3" style="font-size: 0.8rem;">
+                                <li>Tu contraseña no puede contener información personal.</li>
+                                <li>Debe tener al menos 8 caracteres.</li>
+                                <li>No puede ser muy común.</li>
+                                <li>No puede ser completamente numérica.</li>
+                            </ul>
+                            {% if form.password1.errors %}
+                                <div class="text-danger small mt-1">{{ form.password1.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label text-light small fw-bold">Confirmar contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark text-warning border-end-0" style="border-radius: 8px 0 0 8px; border: 1px solid #444;">
+                                    <i class="bi bi-check2-circle"></i>
+                                </span>
+                                {{ form.password2 }}
+                            </div>
+                            <small class="text-muted mt-1 d-block">
+                                Introduce la misma contraseña que antes.
+                            </small>
+                            {% if form.password2.errors %}
+                                <div class="text-danger small mt-1">{{ form.password2.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Botón de registro -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-warning fw-bold" style="
+                                border-radius: 30px;
+                                padding: 10px 0;
+                                font-size: 1.05rem;
+                                box-shadow: 0 4px 10px rgba(253, 216, 53, 0.2);
+                            ">
+                                <i class="bi bi-check2-all"></i> Registrarme
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Enlace a login -->
+                    <div class="text-center mt-4">
+                        <p class="text-muted small mb-0">
+                            ¿Ya eres parte? 
+                            <a href="{% url 'login' %}" class="text-warning fw-bold text-decoration-none">
+                                Inicia sesión
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="id_password1">Contraseña:</label>
-            {{ form.password1 }}
-            <ul>
-                <li>Tu contraseña no puede contener información personal.</li>
-                <li>Debe contener al menos 8 caracteres.</li>
-                <li>No puede ser una contraseña común.</li>
-                <li>No puede ser completamente numérica.</li>
-            </ul>
-        </div>
-        <div>
-            <label for="id_password2">Confirmación de contraseña:</label>
-            {{ form.password2 }}
-            <small>Introduce la misma contraseña que antes, para verificarla.</small>
-        </div>
-        <button type="submit">Registrarse</button>
-    </form>
-    <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+    </div>
+</div>
+
+<!-- Estilos personalizados -->
+<style>
+    .card .form-control {
+        background-color: #252525;
+        border: 1px solid #444;
+        color: #e0e0e0;
+        border-radius: 0 8px 8px 0;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .card .form-control:focus {
+        background-color: #2d2d2d;
+        border-color: #fdd835;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(253, 216, 53, 0.15);
+        outline: none;
+    }
+
+    .input-group {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .form-label {
+        font-weight: 600 !important;
+    }
+
+    small, .small {
+        color: #aaa !important;
+    }
+
+    ul {
+        padding-left: 1.2rem;
+        margin: 0.5rem 0 0 0;
+        font-size: 0.8rem;
+    }
+
+    ul li {
+        margin-bottom: 0.2rem;
+    }
+</style>
 {% endblock %}

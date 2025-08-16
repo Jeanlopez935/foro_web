@@ -1,20 +1,110 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Iniciar sesión - El Prospecto de los Atletas{% endblock %}
+
 {% block content %}
-    <h2>Iniciar sesión</h2>
-    {% if form.errors %}
-    <p style="color: red;">Usuario o contraseña incorrectos. Inténtalo de nuevo.</p>
-    {% endif %}
-    <form method="post">
-    {% csrf_token %}
-    <div>
-        <label for="id_username">Usuario:</label>
-        {{ form.username }}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-9">
+            <div class="card border-0 shadow-lg" style="background-color: #1e1e1e; border-radius: 14px; overflow: hidden;">
+                
+                <!-- Encabezado -->
+                <div class="bg-dark text-center py-4">
+                    <i class="bi bi-box-arrow-in-right display-4 text-warning"></i>
+                    <h3 class="text-white mt-3 mb-0">Iniciar Sesión</h3>
+                    <p class="text-muted small mb-0">Accede a tu cuenta de atleta</p>
+                </div>
+
+                <!-- Formulario -->
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Mensajes de error -->
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger alert-sm" style="font-size: 0.9rem;">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Campo de usuario -->
+                        <div class="mb-3 position-relative">
+                            <label for="{{ form.username.id_for_label }}" class="form-label text-light">Usuario</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-warning">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                {{ form.username }}
+                            </div>
+                            {% if form.username.errors %}
+                                <div class="text-danger small mt-1">{{ form.username.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo de contraseña -->
+                        <div class="mb-3 position-relative">
+                            <label for="{{ form.password.id_for_label }}" class="form-label text-light">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-warning">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                {{ form.password }}
+                            </div>
+                            {% if form.password.errors %}
+                                <div class="text-danger small mt-1">{{ form.password.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold" style="border-radius: 30px;">
+                                <i class="bi bi-door-open"></i> Entrar al Foro
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Enlace a registro -->
+                    <div class="text-center mt-4">
+                        <p class="text-muted small">
+                            ¿No tienes cuenta? 
+                            <a href="{% url 'register' %}" class="text-warning fw-bold text-decoration-none">
+                                Regístrate aquí
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="id_password">Contraseña:</label>
-        {{ form.password }}
-    </div>
-    <button type="submit">Entrar</button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="{% url 'register' %}">Créala aquí</a></p>
+</div>
+
+<!-- Estilos personalizados para los inputs -->
+<style>
+    .card .form-control {
+        background-color: #2d2d2d;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 15px;
+        transition: all 0.3s;
+    }
+
+    .card .form-control:focus {
+        background-color: #333;
+        border-color: #fdd835;
+        color: white;
+        box-shadow: 0 0 0 0.2rem rgba(253, 216, 53, 0.25);
+        outline: none;
+    }
+
+    .card .form-label {
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    .input-group-text {
+        border: 1px solid #444;
+    }
+</style>
+
 {% endblock %}
