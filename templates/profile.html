@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Perfil de {{ user.username }}</h2>
-<p>Email: {{ user.email }}</p>
+
+{% if user.is_authenticated %}
+<form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger" style="border:none; cursor:pointer;">
+        Cerrar sesión
+    </button>
+</form>
+{% endif %}
+
 <h3>Tus publicaciones</h3>
 <ul>
     {% for post in user_posts %}
@@ -10,12 +19,6 @@
         <p>{{ post.created_at|date:'d/m/Y' }}</p>
         <a href="{% url 'post_update' post.pk %}">Editar</a>
         <a href="{% url 'post_delete' post.pk %}">Borrar</a>
-        {% if user.is_authenticated %}
-    <form action="{% url 'logout' %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" style="background:none;border:none;color:#333;cursor:pointer;">Cerrar sesión</button>
-</form>
-{% endif %}
     </li>
     {% empty %}
     <li>No has creado publicaciones aún.</li>
